@@ -1,3 +1,4 @@
+   
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -22,3 +23,31 @@
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
+
+<h2>Orders</h2>
+<% @customer.orders.each do |order| %>
+  <p>
+    <strong>Product_name:</strong>
+    <%= order.product_name %>
+  </p>
+
+  <p>
+    <strong>Product_count:</strong>
+    <%= order.product_count %>
+  </p>
+<% end %>
+
+<h2>Add an order:</h2>
+<%= form_with model: [ @customer, @customer.orders.build ] do |form| %>
+  <p>
+    <%= form.label :product_name %><br>
+    <%= form.text_field :product_name %>
+  </p>
+  <p>
+    <%= form.label :product_count %><br>
+    <%= form.text_area:product_count %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
