@@ -1,53 +1,42 @@
-   
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @customer.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @customer.email %>
-</p>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
-
-<h2>Orders</h2>
-<% @customer.orders.each do |order| %>
+<div class="card shadow p-3 mb-5 bg-white rounded">
   <p>
-    <strong>Product_name:</strong>
-    <%= order.product_name %>
+    <strong>First name:</strong>
+    <%= @customer.first_name %>
   </p>
 
   <p>
-    <strong>Product_count:</strong>
-    <%= order.product_count %>
+    <strong>Last name:</strong>
+    <%= @customer.last_name %>
   </p>
-<% end %>
 
-<h2>Add an order:</h2>
-<%= form_with model: [ @customer, @customer.orders.build ] do |form| %>
   <p>
-    <%= form.label :product_name %><br>
-    <%= form.text_field :product_name %>
+    <strong>Phone:</strong>
+    <%= @customer.phone %>
   </p>
+
   <p>
-    <%= form.label :product_count %><br>
-    <%= form.text_area:product_count %>
+    <strong>Email:</strong>
+    <%= @customer.email %>
   </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+</div>
+<%= link_to 'Edit', edit_customer_path(@customer), class: "btn btn-primary" %> 
+<%= link_to 'Back', customers_path, class: "btn btn-primary" %>
+  <% if @orders.empty? %>
+    <h3>There are no orders</h3>
+  <% else %>
+  <div class="card shadow p-3 mb-5 bg-white rounded">
+    <table>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.product_name %></td>
+        <td><%= order.product_count %></td>
+        <td><%= link_to 'Show', order %></td> %>
+        <td><%= link_to 'Edit', edit_order_path(order)</td>
+        <td><%= link_to "Destroy", order, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+    </table> 
+  </div>
+  <% end %>

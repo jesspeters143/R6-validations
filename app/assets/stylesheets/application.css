@@ -15,3 +15,21 @@
  *= require_self
  */
 
+ .jumbo-background {
+    background-image: url("costumers.jpg");
+    background-size: auto;
+  }
+
+  @font-face {
+    font-family: 'MONBIJOUX';
+    src: url('MONBIJOUX.otf');
+ }
+
+ h1 {
+   font-family: 'MONBIJOUX';
+ }
+
+ h2 {
+    font-family: 'MONBIJOUX';
+    color: #fff;
+ } 
